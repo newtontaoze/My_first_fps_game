@@ -50,14 +50,6 @@ func _join_room() -> void:
 	ui.visible = false
 	world.visible = true
 
-func _on_peer_connected(peer_id: int) -> void:
-	spawner.spawn(peer_id)
-
-func _custom_spawn(peer_id: int) -> Node:
-	var player: CharacterBody3D = player_scene.instantiate()
-	player.name = str(peer_id)
-	return player
-
 func _on_peer_connect(id: int):
 	if not multiplayer.is_server():
 		return

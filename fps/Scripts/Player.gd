@@ -5,7 +5,10 @@ const JUMP_VELOCITY = 4.5
 @export var camera: Camera3D
 
 func _ready() -> void:
-	if !is_multiplayer_authority():
+	if is_multiplayer_authority():
+		camera.make_current()
+		camera.current = true
+	else:
 		camera.current = false
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
