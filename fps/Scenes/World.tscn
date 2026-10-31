@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://bjqn1hvu5nwtm"]
+
+[ext_resource type="Texture2D" uid="uid://d4k3mpwrf0ryu" path="res://Sprites/Skyboxes/skybox-day.png" id="1_7oqxt"]
+[ext_resource type="PackedScene" uid="uid://dqruv6ut2ece7" path="res://Scenes/Mesh.tscn" id="1_j0p05"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_tqdvb"]
+panorama = ExtResource("1_7oqxt")
+
+[sub_resource type="Sky" id="Sky_hppht"]
+sky_material = SubResource("PanoramaSkyMaterial_tqdvb")
+
+[sub_resource type="Environment" id="Environment_rcrv0"]
+background_mode = 2
+sky = SubResource("Sky_hppht")
+
+[node name="World" type="Node3D" unique_id=1496337339]
+
+[node name="MeshInstance3D" parent="." unique_id=1448302716 instance=ExtResource("1_j0p05")]
+transform = Transform3D(100, 0, 0, 0, 1, 0, 0, 0, 100, 0, 0, 0)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=546066655]
+transform = Transform3D(0.70710677, -0.45451942, 0.54167515, 0, 0.7660444, 0.6427875, -0.70710677, -0.45451942, 0.54167515, 0, 0, 0)
+light_energy = 1.5
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1743012160]
+environment = SubResource("Environment_rcrv0")

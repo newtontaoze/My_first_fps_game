@@ -1,0 +1,102 @@
+[gd_scene format=3 uid="uid://bxm2yxqeev805"]
+
+[ext_resource type="Script" uid="uid://hmmtdq653ppk" path="res://Scripts/Main.gd" id="1_r150o"]
+[ext_resource type="PackedScene" uid="uid://bjqn1hvu5nwtm" path="res://Scenes/World.tscn" id="2_idj7w"]
+
+[node name="Main" type="Node" unique_id=532516317 node_paths=PackedStringArray("world", "ui", "join_ui", "join_text", "spawner", "players")]
+script = ExtResource("1_r150o")
+world = NodePath("World")
+ui = NodePath("CanvasLayer/Control")
+join_ui = NodePath("CanvasLayer/Control/HBoxContainer/TabContainer")
+join_text = NodePath("CanvasLayer/Control/HBoxContainer/TabContainer/输入IP/TextEdit")
+spawner = NodePath("MultiplayerSpawner")
+players = NodePath("Players")
+
+[node name="World" parent="." unique_id=1496337339 instance=ExtResource("2_idj7w")]
+visible = false
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=699281835]
+
+[node name="Control" type="Control" parent="CanvasLayer" unique_id=909955982]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Control" unique_id=1336620572]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0.50928617, 0.50928617, 0.50928617, 1)
+
+[node name="HBoxContainer" type="Control" parent="CanvasLayer/Control" unique_id=1416747003]
+anchors_preset = 0
+offset_left = 70.0
+offset_top = 70.0
+offset_right = 221.0
+offset_bottom = 136.0
+scale = Vector2(2, 2)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/HBoxContainer" unique_id=997672086]
+layout_mode = 0
+offset_right = 72.0
+offset_bottom = 66.0
+
+[node name="Button" type="Button" parent="CanvasLayer/Control/HBoxContainer/VBoxContainer" unique_id=1012817501]
+layout_mode = 2
+text = "创建房间
+"
+
+[node name="Button2" type="Button" parent="CanvasLayer/Control/HBoxContainer/VBoxContainer" unique_id=504044622]
+layout_mode = 2
+text = "加入房间
+"
+
+[node name="TabContainer" type="TabContainer" parent="CanvasLayer/Control/HBoxContainer" unique_id=476645761]
+visible = false
+layout_mode = 0
+offset_left = 76.0
+offset_right = 476.0
+offset_bottom = 250.0
+current_tab = 0
+
+[node name="输入IP" type="Control" parent="CanvasLayer/Control/HBoxContainer/TabContainer" unique_id=1347864924]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/HBoxContainer/TabContainer/输入IP" unique_id=1268387263]
+layout_mode = 0
+offset_left = 34.0
+offset_top = 38.5
+offset_right = 102.0
+offset_bottom = 61.5
+scale = Vector2(1.5, 1.5)
+text = "请输入IP:"
+
+[node name="TextEdit" type="TextEdit" parent="CanvasLayer/Control/HBoxContainer/TabContainer/输入IP" unique_id=779397458]
+layout_mode = 0
+offset_left = 87.0
+offset_top = 103.5
+offset_right = 315.5
+offset_bottom = 131.0
+
+[node name="Button" type="Button" parent="CanvasLayer/Control/HBoxContainer/TabContainer/输入IP" unique_id=1274255148]
+layout_mode = 0
+offset_left = 147.0
+offset_top = 145.0
+offset_right = 219.0
+offset_bottom = 176.0
+scale = Vector2(1.5, 1.5)
+text = "进入房间"
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="." unique_id=1940591998]
+_spawnable_scenes = PackedStringArray("uid://c4kbdthg225cn")
+spawn_path = NodePath("../Players")
+
+[node name="Players" type="Node" parent="." unique_id=1037624794]
+
+[connection signal="button_down" from="CanvasLayer/Control/HBoxContainer/VBoxContainer/Button" to="." method="_host"]
+[connection signal="button_down" from="CanvasLayer/Control/HBoxContainer/VBoxContainer/Button2" to="." method="_jost"]
+[connection signal="button_down" from="CanvasLayer/Control/HBoxContainer/TabContainer/输入IP/Button" to="." method="_join_room"]
